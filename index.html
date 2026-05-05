@@ -12,13 +12,11 @@ h1{font-size:18px;font-weight:600;margin-bottom:4px}
 .subtitle{font-size:13px;color:#666;margin-bottom:1.2rem}
 .top-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:1.2rem}
 
-/* ── SUMMARY STATS ── */
 .summary{display:flex;gap:8px;margin-bottom:1.2rem}
 .stat{flex:1;padding:10px 8px;border-radius:8px;background:#fff;border:1px solid #e0e0e0;text-align:center}
 .stat-n{font-size:22px;font-weight:600}
 .stat-l{font-size:11px;color:#888;margin-top:2px}
 
-/* ── TABS ── */
 .tabs{display:flex;gap:6px;margin-bottom:1rem;flex-wrap:wrap}
 .tab{padding:6px 14px;font-size:13px;border:1px solid #d0d0d0;border-radius:6px;background:#fff;color:#555;cursor:pointer;transition:all .15s}
 .tab:hover{background:#f0f0ee}
@@ -27,21 +25,19 @@ h1{font-size:18px;font-weight:600;margin-bottom:4px}
 .tab:not(.active) .badge{background:#eee;color:#888}
 .tab.all-done:not(.active){border-color:#1D9E75;color:#0F6E56}
 
-/* ── PROGRESS ── */
 .pbar{height:5px;border-radius:3px;background:#e0e0e0;margin-bottom:1rem;overflow:hidden}
 .pfill{height:100%;border-radius:3px;background:#1D9E75;transition:width .4s}
 
-/* ── FILTERS ── */
 .frow{display:flex;gap:6px;margin-bottom:.8rem;align-items:center;flex-wrap:wrap}
 .frow label{font-size:12px;color:#888}
 .fbtn{padding:3px 10px;font-size:12px;border:1px solid #d0d0d0;border-radius:10px;background:#fff;color:#666;cursor:pointer}
 .fbtn.active{background:#1a1a18;color:#fff;border-color:#1a1a18}
 
-/* ── SECTION LABEL ── */
-.sec-lbl{font-size:11px;font-weight:600;color:#999;letter-spacing:.06em;text-transform:uppercase;margin:1.2rem 0 .4rem;padding-bottom:.3rem;border-bottom:1px solid #e8e8e8}
-.sec-lbl:first-of-type{margin-top:0}
+/* Proceed divider */
+.proceed{display:flex;align-items:center;gap:8px;margin:1rem 0 .5rem;font-size:12px;font-weight:600;color:#888;letter-spacing:.03em;text-transform:uppercase}
+.proceed::before,.proceed::after{content:'';flex:1;height:1px;background:#ddd}
+.proceed-arrow{font-size:14px;color:#bbb}
 
-/* ── CHECKLIST ITEMS ── */
 .item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;border:1px solid #e8e8e8;background:#fff;margin-bottom:5px}
 .item.passed{border-color:#9FE1CB;background:#f0fbf7}
 .item.flagged{border-color:#f0c040;background:#fffbee}
@@ -63,39 +59,34 @@ h1{font-size:18px;font-weight:600;margin-bottom:4px}
 .item-right{display:flex;align-items:center;gap:6px;flex-shrink:0}
 .imeta{font-size:10px;color:#555;text-align:right;line-height:1.4}
 .sig-thumb{height:20px;max-width:56px;display:block;margin-top:2px;margin-left:auto;opacity:.85}
-
 .na-pill{font-size:11px;padding:2px 8px;border-radius:10px;background:#fff3cd;color:#856404;white-space:nowrap;border:1px solid #ffe083}
 
-/* icon buttons */
 .icon-btn{width:30px;height:30px;border-radius:6px;border:1px solid #d0d0d0;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all .15s;color:#555;padding:0}
 .icon-btn:hover{background:#f0f0f0;border-color:#aaa}
 .icon-btn.flag-set{color:#d4a800;border-color:#f0c040;background:#fffbee;cursor:default}
 .icon-btn svg{width:15px;height:15px;display:block}
 
-/* ── ACTIONS ── */
 .actions{display:flex;gap:8px;margin-top:1.4rem;flex-wrap:wrap}
 button.btn{padding:7px 16px;font-size:13px;border:1px solid #ccc;border-radius:6px;background:#fff;color:#333;cursor:pointer;font-weight:500}
 button.btn:hover{background:#f0f0f0}
-button.btn:disabled{opacity:.45;cursor:default}
 button.btn.ok{background:#1D9E75;color:#fff;border-color:#1D9E75}
-button.btn.ok:hover:not(:disabled){background:#0F6E56}
+button.btn.ok:hover{background:#0F6E56}
 button.btn.danger{color:#c0392b;border-color:#e0b0b0}
 
 .empty{padding:2rem;text-align:center;font-size:14px;color:#999}
 
-/* ── TOAST ── */
 .toast{position:fixed;bottom:20px;right:20px;padding:8px 16px;border-radius:8px;background:#1a1a18;color:#fff;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:300;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .toast.on{opacity:1}
 
-/* ── SIGNATURE OVERLAY ── */
+/* Signature overlay */
 #sig-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem}
 .sig-card{background:#fff;border-radius:12px;padding:1.5rem;width:100%;max-width:420px;display:flex;flex-direction:column;gap:12px}
 .sig-heading{font-size:16px;font-weight:600;text-align:center}
 .sig-sub{font-size:12px;color:#888;text-align:center;margin-top:-6px}
-#sig-canvas{width:100%;height:110px;border:1.5px solid #ccc;border-radius:8px;cursor:crosshair;touch-action:none;background:#fafafa;display:block}
+#sig-canvas{width:100%;height:120px;border:1.5px solid #ccc;border-radius:8px;cursor:crosshair;touch-action:none;background:#fafafa;display:block}
 .sig-actions{display:flex;gap:8px;justify-content:flex-end}
 
-/* ── FLAG PANEL ── */
+/* Flag panel */
 #flag-backdrop{display:none;position:fixed;inset:0;z-index:150;background:rgba(0,0,0,.3)}
 #flag-panel{display:none;position:fixed;bottom:0;left:0;right:0;z-index:160;background:#fff;border-top:1px solid #e0e0e0;border-radius:16px 16px 0 0;padding:1.25rem 1rem 2rem;max-width:780px;margin:0 auto}
 #flag-panel.open{display:block}
@@ -106,7 +97,7 @@ button.btn.danger{color:#c0392b;border-color:#e0b0b0}
 .flag-confirm{margin-top:10px;width:100%;padding:10px;font-size:14px;font-weight:600;background:#d4a800;color:#fff;border:none;border-radius:8px;cursor:pointer}
 .flag-confirm:hover{background:#b38f00}
 
-/* ── PHOTO LIGHTBOX ── */
+/* Lightbox */
 #lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:200;flex-direction:column;align-items:center;justify-content:center;padding:1rem}
 #lb.open{display:flex}
 .lb-inner{max-width:680px;width:100%;display:flex;flex-direction:column;gap:12px}
@@ -124,7 +115,7 @@ button.btn.danger{color:#c0392b;border-color:#e0b0b0}
 </head>
 <body>
 
-<!-- ── SIGNATURE OVERLAY ── -->
+<!-- Signature overlay -->
 <div id="sig-overlay">
   <div class="sig-card">
     <div class="sig-heading">Draw your initials</div>
@@ -137,7 +128,7 @@ button.btn.danger{color:#c0392b;border-color:#e0b0b0}
   </div>
 </div>
 
-<!-- ── FLAG PANEL ── -->
+<!-- Flag panel -->
 <div id="flag-backdrop" onclick="closeFlagPanel()"></div>
 <div id="flag-panel">
   <div class="flag-label">Describe the issue</div>
@@ -145,7 +136,7 @@ button.btn.danger{color:#c0392b;border-color:#e0b0b0}
   <button class="flag-confirm" onclick="confirmFlag()">Flag this item</button>
 </div>
 
-<!-- ── MAIN APP ── -->
+<!-- Main app -->
 <div class="container" id="main-app" style="display:none">
   <div class="top-bar">
     <div>
@@ -175,7 +166,7 @@ button.btn.danger{color:#c0392b;border-color:#e0b0b0}
   </div>
 </div>
 
-<!-- ── PHOTO LIGHTBOX ── -->
+<!-- Lightbox -->
 <div id="lb" onclick="closeLB(event)">
   <div class="lb-inner">
     <div class="lb-title" id="lb-title"></div>
@@ -188,438 +179,383 @@ button.btn.danger{color:#c0392b;border-color:#e0b0b0}
 <div class="toast" id="toast"></div>
 
 <script>
-const B=[
-{name:"Paul S. Sarbanes",folder:"sarbanes",items:[
-{t:"Fire Extinguisher",l:"Storage room behind dumpster",na:1},
-{t:"Exit Sign",l:"In front of double brown doors — loading dock"},
-{t:"Exit Sign",l:"In front of WorWic entrance/exit"},
-{t:"Exit Sign",l:"Meeting room 8 double doors"},
-{t:"Fire Extinguisher",l:"Next to meeting room 8 double doors",na:1},
-{t:"Emergency Light",l:"Above WorWic office window"},
-{t:"Exit Sign",l:"In front of meeting room 8 entrance"},
-{t:"Emergency Light",l:"Women's bathroom"},
-{t:"Exit Sign",l:"Entrance to WorWic classroom from meeting room 8"},
-{t:"Fire Extinguisher",l:"Maintenance storage room",na:1},
-{t:"Exit Sign",l:"Entrance to WorWic classroom from Steam Lab"},
-{t:"Emergency Light",l:"WorWic classroom — next to door and above thermostat"},
-{t:"Fire Extinguisher",l:"WorWic classroom — door to WorWic storage room",na:1},
-{t:"Emergency Light",l:"WorWic storage room"},
-{t:"Emergency Light",l:"WorWic office"},
-{t:"Exit Sign",l:"WorWic office"},
-{t:"Exit Sign",l:"WorWic storage room — door to boiler room hall"},
-{t:"Fire Extinguisher",l:"Outside boiler room",na:1},
-{t:"Sprinkler Valve",l:"Boiler room"},
-{t:"Exit Sign",l:"Fuel oil room — door to Circle Ave"},
-{t:"Exit Sign / Emergency Light",l:"Boiler room hallway — next to ladder storage"},
-{t:"Exit Sign / Emergency Light",l:"Boiler room hallway — next to Circle Ave. exit"},
-{t:"Exit Sign",l:"Circle Ave. exit"},
-{t:"Exit Sign",l:"Meeting room 1 — door to boiler room hall"},
-{t:"Fire Extinguisher",l:"Meeting room 1",na:1},
-{t:"Exit Sign",l:"Meeting room 1 — door to Circle Ave."},
-{t:"Fire Extinguisher",l:"Staff kitchen",na:1},
-{t:"Exit Sign",l:"Staff lounge"},
-{t:"Emergency Light",l:"Staff lounge"},
-{t:"Fire Extinguisher",l:"Staff lounge",na:1},
-{t:"Exit Sign",l:"Stairwell basement landing"},
-{t:"Exit Sign",l:"In front of meeting room 2"},
-{t:"Exit Sign",l:"Inside meeting room 3"},
-{t:"Fire Extinguisher",l:"Inside server room — to right",na:1},
-{t:"Emergency Light",l:"Back wall of server room above breaker panel"},
-{t:"Fire Extinguisher",l:"Server room — next to Steam lab door",na:1},
-{t:"Exit Sign",l:"Steam lab — in front of meeting room 3 door"},
-{t:"Emergency Light",l:"Steam lab next to white board"},
-{t:"Exit Sign",l:"Steam lab door towards loading dock"},
-{t:"Fire Extinguisher",l:"Next to Steam Lab door towards loading dock",na:1},
-{t:"Exit Sign",l:"Meeting room 6"},
-{t:"Fire Extinguisher",l:"Next to exit door towards curbside pickup",na:1},
-{t:"Exit Sign",l:"Above exit door towards curbside pickup"},
-{t:"Emergency Light",l:"Above dolly & cart storage"},
-{t:"Exit Sign",l:"Next to double blue doors towards loading dock"},
-{t:"Exit Sign",l:"Above staff entrance"},
-{t:"Fire Extinguisher",l:"Inside maintenance office",na:1},
-{t:"Fire Extinguisher",l:"Outside maintenance office",na:1},
-{t:"Fire Extinguisher",l:"Inside admin storage room",na:1},
-{t:"Exit Sign",l:"Above receiving door hallway"},
-{t:"Fire Extinguisher",l:"Next to administration double doors",na:1},
-{t:"Fire Extinguisher",l:"Next to meeting room 4",na:1},
-{t:"Fire Extinguisher",l:"Inside elevator mechanical room",na:1},
-{t:"Exit Sign",l:"Above Division St. exit"},
-{t:"Fire Extinguisher",l:"Next to Division St. exit",na:1},
-{t:"Exit Sign",l:"In front of main library bathrooms / stairwell door"},
-{t:"Fire Extinguisher",l:"Children's program room",na:1},
-{t:"Exit Sign",l:"Circle Ave. exit (children's area)"},
-{t:"Fire Extinguisher",l:"IT office",na:1},
-{t:"Emergency Light",l:"IT office"},
-{t:"AED",l:"Behind circulation desk",na:1},
-{t:"Fire Extinguisher",l:"Next to dumbwaiter",na:1},
-{t:"Exit / Emergency Light",l:"Workroom teen area exit"},
-{t:"Fire Extinguisher",l:"Penthouse",na:1},
-{t:"Exit / Emergency Light",l:"Workroom adult area exit"},
-{t:"Fire Extinguisher",l:"Adult stacks next to work room",na:1},
-{t:"Exit Sign",l:"Above Market St. exit"},
-{t:"Fire Extinguisher",l:"Market St. exit",na:1},
-{t:"Exit Sign",l:"Community support center"},
-{t:"Fire Extinguisher",l:"AV section",na:1},
-{t:"Exit Sign",l:"Adult new nonfiction racks"},
-{t:"Exit Sign",l:"In front of elevator"},
-{t:"Fire Extinguisher",l:"Lobby",na:1}
+// Items with proceed:true are navigation dividers, not inspectable units.
+// na:1 = sign physical tag only. All others are tap-to-inspect.
+const B = [
+{name:"Paul S. Sarbanes", folder:"sarbanes", items:[
+  {t:"Fire Extinguisher", l:"Storage room behind dumpster", na:1},
+  {t:"Exit Sign", l:"In front of double brown doors on loading dock"},
+  {proceed:"Proceed to meeting room 8 through brown double doors"},
+  {t:"Exit Sign", l:"In front of WorWic entrance/exit"},
+  {t:"Exit Sign", l:"Meeting room 8 double doors"},
+  {t:"Fire Extinguisher", l:"Next to meeting room 8 double doors", na:1},
+  {t:"Emergency Light", l:"Above WorWic office window"},
+  {t:"Exit Sign", l:"In front of meeting room 8 entrance"},
+  {t:"Emergency Light", l:"Women's bathroom"},
+  {proceed:"Proceed to WorWic classroom"},
+  {t:"Exit Sign", l:"Entrance to WorWic classroom from meeting room 8"},
+  {t:"Fire Extinguisher", l:"Maintenance storage room", na:1},
+  {t:"Exit Sign", l:"Entrance to WorWic classroom from Steam Lab"},
+  {t:"Emergency Light", l:"WorWic classroom next to door and above thermostat"},
+  {t:"Fire Extinguisher", l:"WorWic classroom next to door leading to WorWic storage room", na:1},
+  {proceed:"Proceed to WorWic storage room"},
+  {t:"Emergency Light", l:"WorWic storage room"},
+  {t:"Emergency Light", l:"WorWic office"},
+  {t:"Exit Sign", l:"WorWic office"},
+  {t:"Exit Sign", l:"WorWic storage room door leading to boiler room hall"},
+  {proceed:"Proceed towards boiler room"},
+  {t:"Fire Extinguisher", l:"Outside boiler room", na:1},
+  {t:"Sprinkler Valve", l:"Boiler room"},
+  {t:"Exit Sign", l:"Fuel oil room door leading to Circle Ave"},
+  {proceed:"Proceed towards meeting room 1"},
+  {t:"Exit Sign / Emergency Light", l:"Boiler room hallway next to ladder storage"},
+  {t:"Exit Sign / Emergency Light", l:"Boiler room hallway next to Circle Ave. exit"},
+  {t:"Exit Sign", l:"Circle Ave. exit"},
+  {t:"Exit Sign", l:"Meeting room 1 door leading to boiler room hall"},
+  {t:"Fire Extinguisher", l:"Meeting room 1", na:1},
+  {t:"Exit Sign", l:"Meeting room 1 door leading to Circle Ave."},
+  {proceed:"Proceed to staff kitchen"},
+  {t:"Fire Extinguisher", l:"Staff kitchen", na:1},
+  {t:"Exit Sign", l:"Staff lounge"},
+  {t:"Emergency Light", l:"Staff lounge"},
+  {t:"Fire Extinguisher", l:"Staff lounge", na:1},
+  {proceed:"Proceed to meeting room hallway"},
+  {t:"Exit Sign", l:"Stairwell basement landing"},
+  {t:"Exit Sign", l:"In front of meeting room 2"},
+  {t:"Exit Sign", l:"Inside meeting room 3"},
+  {proceed:"Proceed to server room"},
+  {t:"Fire Extinguisher", l:"Inside server room to right", na:1},
+  {t:"Emergency Light", l:"Back wall of server room above breaker panel"},
+  {t:"Fire Extinguisher", l:"Server room next to Steam lab door", na:1},
+  {proceed:"Proceed to Steam Lab"},
+  {t:"Exit Sign", l:"Steam lab in front of meeting room 3 door"},
+  {t:"Emergency Light", l:"Steam lab next to white board"},
+  {t:"Exit Sign", l:"Steam lab door leading towards loading dock"},
+  {t:"Fire Extinguisher", l:"Next to Steam Lab door leading towards loading dock", na:1},
+  {proceed:"Proceed towards curbside pickup"},
+  {t:"Exit Sign", l:"Meeting room 6"},
+  {t:"Fire Extinguisher", l:"Next to exit door towards curbside pickup", na:1},
+  {t:"Exit Sign", l:"Above exit door towards curbside pickup"},
+  {t:"Emergency Light", l:"Above dolly & cart storage"},
+  {t:"Exit Sign", l:"Next to double blue doors leading towards loading dock"},
+  {proceed:"Proceed towards loading dock and staff entrance"},
+  {t:"Exit Sign", l:"Above staff entrance"},
+  {t:"Fire Extinguisher", l:"Inside maintenance office", na:1},
+  {t:"Fire Extinguisher", l:"Outside maintenance office", na:1},
+  {proceed:"Proceed towards admin storage room (donated book storage)"},
+  {t:"Fire Extinguisher", l:"Inside admin storage room", na:1},
+  {t:"Exit Sign", l:"Above receiving door hallway"},
+  {proceed:"Proceed towards elevator"},
+  {t:"Fire Extinguisher", l:"Next to administration double doors", na:1},
+  {t:"Fire Extinguisher", l:"Next to meeting room 4", na:1},
+  {t:"Fire Extinguisher", l:"Inside elevator mechanical room", na:1},
+  {proceed:"Proceed towards stairwell"},
+  {t:"Exit Sign", l:"Above Division St. exit"},
+  {t:"Fire Extinguisher", l:"Next to Division St. exit", na:1},
+  {proceed:"Proceed towards 1st floor"},
+  {t:"Exit Sign", l:"In front of main library bathrooms/stairwell door"},
+  {proceed:"Proceed towards children's program room"},
+  {t:"Fire Extinguisher", l:"Children's program room", na:1},
+  {proceed:"Proceed towards children's play area"},
+  {t:"Exit Sign", l:"Circle Ave. exit (children's area)"},
+  {t:"Fire Extinguisher", l:"IT office", na:1},
+  {t:"Emergency Light", l:"IT office"},
+  {proceed:"Proceed towards circulation desk"},
+  {t:"AED", l:"Behind circulation desk", na:1},
+  {proceed:"Proceed towards workroom"},
+  {t:"Fire Extinguisher", l:"Next to dumbwaiter", na:1},
+  {t:"Exit / Emergency Light", l:"Workroom teen area exit"},
+  {t:"Fire Extinguisher", l:"Penthouse", na:1},
+  {t:"Exit / Emergency Light", l:"Workroom adult area exit"},
+  {proceed:"Proceed towards adult stacks"},
+  {t:"Fire Extinguisher", l:"Adult stacks next to work room", na:1},
+  {proceed:"Proceed towards large print section"},
+  {t:"Exit Sign", l:"Above Market St. exit"},
+  {t:"Fire Extinguisher", l:"Market St. exit", na:1},
+  {proceed:"Proceed towards community support center"},
+  {t:"Exit Sign", l:"Community support center"},
+  {t:"Fire Extinguisher", l:"AV section", na:1},
+  {t:"Exit Sign", l:"Adult new nonfiction racks"},
+  {proceed:"Proceed towards lobby"},
+  {t:"Exit Sign", l:"In front of elevator"},
+  {t:"Fire Extinguisher", l:"Lobby", na:1}
 ]},
-{name:"Centre",folder:"centre",items:[
-{t:"Emergency / Exit Sign",l:"Front entrance"},
-{t:"Emergency / Exit Sign",l:"Service entrance"},
-{t:"Fire Extinguisher",l:"Circulation desk",na:1},
-{t:"AED",l:"Circulation desk",na:1},
-{t:"Emergency Light",l:"Above office"},
-{t:"Emergency Light",l:"Above storybook room"},
-{t:"Emergency Light",l:"Storybook room"},
-{t:"Fire Extinguisher",l:"Storybook room",na:1},
-{t:"Exit / Emergency Light",l:"Storybook room"},
-{t:"Emergency Light",l:"Bathroom"}
+{name:"Centre", folder:"centre", items:[
+  {t:"Emergency / Exit Sign", l:"Front entrance"},
+  {t:"Emergency / Exit Sign", l:"Service entrance"},
+  {t:"Fire Extinguisher", l:"Circulation desk", na:1},
+  {t:"AED", l:"Circulation desk", na:1},
+  {t:"Emergency Light", l:"Above office"},
+  {t:"Emergency Light", l:"Above storybook room"},
+  {t:"Emergency Light", l:"Storybook room"},
+  {t:"Fire Extinguisher", l:"Storybook room", na:1},
+  {t:"Exit / Emergency Light", l:"Storybook room"},
+  {t:"Emergency Light", l:"Bathroom"}
 ]},
-{name:"Lewis R. Riley",folder:"riley",items:[
-{t:"Exit Sign",l:"Front entrance"},
-{t:"Emergency Light",l:"14' round"},
-{t:"Fire Extinguisher",l:"Front",na:1},
-{t:"Fire Extinguisher",l:"Back",na:1},
-{t:"Exit Sign",l:"Rear exit"},
-{t:"Exit Sign",l:"Rear staff lounge exit"},
-{t:"AED",l:"Board game shelving",na:1}
+{name:"Lewis R. Riley", folder:"riley", items:[
+  {t:"Exit Sign", l:"Front entrance"},
+  {t:"Emergency Light", l:"14' round"},
+  {t:"Fire Extinguisher", l:"Front", na:1},
+  {t:"Fire Extinguisher", l:"Back", na:1},
+  {t:"Exit Sign", l:"Rear exit"},
+  {t:"Exit Sign", l:"Rear staff lounge exit"},
+  {t:"AED", l:"Board game shelving", na:1}
 ]}
 ];
 
-/* ─── STATE ─── */
-// Persisted: { items: { key: {type,date,note} }, sigs: { 'MM/DD/YYYY': dataURL } }
-// Session-only: sessionSig (dataURL drawn this session)
+// Build a flat index of only real items (no proceed dividers) per branch
+// itemIndex maps from rendered position back to B[bi].items index
+function realItems(bi) {
+  return B[bi].items.map((it, i) => ({it, i})).filter(({it}) => !it.proceed);
+}
+
 const SK = 'wpl_insp_v3';
-let state = { items: {}, sigs: {} };
+let state = {items:{}, sigs:{}};
 let sessionSig = null;
 let cur = 0, filt = 'all';
-let pendingFlag = null; // {bi, itemIdx} while flag panel is open
+let pendingFlag = null;
 
 function load() {
-  try {
-    const raw = localStorage.getItem(SK);
-    if (raw) state = JSON.parse(raw);
-    if (!state.items) state.items = {};
-    if (!state.sigs) state.sigs = {};
-  } catch(e) {}
+  try { const r = localStorage.getItem(SK); if(r){state=JSON.parse(r);} if(!state.items)state.items={}; if(!state.sigs)state.sigs={}; } catch(e){}
 }
-function save() {
-  try { localStorage.setItem(SK, JSON.stringify(state)); } catch(e) {}
-}
-function today() {
-  return new Date().toLocaleDateString('en-US', {month:'2-digit', day:'2-digit', year:'numeric'});
-}
-function key(b, i) { return b + '_' + i; }
+function save() { try{localStorage.setItem(SK,JSON.stringify(state));}catch(e){} }
+function today() { return new Date().toLocaleDateString('en-US',{month:'2-digit',day:'2-digit',year:'numeric'}); }
+function key(b,i) { return b+'_'+i; }
 
-/* ─── SIGNATURE PAD ─── */
-let sigCtx, sigDrawing = false, sigHasDrawn = false;
-
+/* ── SIGNATURE PAD ── */
+let sigCtx, sigDrawing=false, sigHasDrawn=false;
 function initSigPad() {
   const canvas = document.getElementById('sig-canvas');
-  // Size canvas pixels to match display size
-  const w = canvas.offsetWidth || 360;
-  canvas.width = w;
-  canvas.height = 110;
+  canvas.width = canvas.offsetWidth || 380;
+  canvas.height = 120;
   sigCtx = canvas.getContext('2d');
-  sigCtx.strokeStyle = '#1a1a18';
-  sigCtx.lineWidth = 2.5;
-  sigCtx.lineCap = 'round';
-  sigCtx.lineJoin = 'round';
-
-  function pos(e) {
-    const r = canvas.getBoundingClientRect();
-    const src = e.touches ? e.touches[0] : e;
-    return {
-      x: (src.clientX - r.left) * (canvas.width / r.width),
-      y: (src.clientY - r.top) * (canvas.height / r.height)
-    };
-  }
-  canvas.addEventListener('mousedown', e => { sigDrawing = true; const p = pos(e); sigCtx.beginPath(); sigCtx.moveTo(p.x, p.y); });
-  canvas.addEventListener('mousemove', e => { if (!sigDrawing) return; const p = pos(e); sigCtx.lineTo(p.x, p.y); sigCtx.stroke(); markDrawn(); });
-  canvas.addEventListener('mouseup', () => sigDrawing = false);
-  canvas.addEventListener('mouseleave', () => sigDrawing = false);
-  canvas.addEventListener('touchstart', e => { e.preventDefault(); sigDrawing = true; const p = pos(e); sigCtx.beginPath(); sigCtx.moveTo(p.x, p.y); }, {passive:false});
-  canvas.addEventListener('touchmove', e => { e.preventDefault(); if (!sigDrawing) return; const p = pos(e); sigCtx.lineTo(p.x, p.y); sigCtx.stroke(); markDrawn(); }, {passive:false});
-  canvas.addEventListener('touchend', () => sigDrawing = false);
+  sigCtx.strokeStyle='#1a1a18'; sigCtx.lineWidth=2.5; sigCtx.lineCap='round'; sigCtx.lineJoin='round';
+  function pos(e){const r=canvas.getBoundingClientRect(),src=e.touches?e.touches[0]:e;return{x:(src.clientX-r.left)*(canvas.width/r.width),y:(src.clientY-r.top)*(canvas.height/r.height)};}
+  canvas.addEventListener('mousedown',e=>{sigDrawing=true;const p=pos(e);sigCtx.beginPath();sigCtx.moveTo(p.x,p.y);});
+  canvas.addEventListener('mousemove',e=>{if(!sigDrawing)return;const p=pos(e);sigCtx.lineTo(p.x,p.y);sigCtx.stroke();markDrawn();});
+  canvas.addEventListener('mouseup',()=>sigDrawing=false);
+  canvas.addEventListener('mouseleave',()=>sigDrawing=false);
+  canvas.addEventListener('touchstart',e=>{e.preventDefault();sigDrawing=true;const p=pos(e);sigCtx.beginPath();sigCtx.moveTo(p.x,p.y);},{passive:false});
+  canvas.addEventListener('touchmove',e=>{e.preventDefault();if(!sigDrawing)return;const p=pos(e);sigCtx.lineTo(p.x,p.y);sigCtx.stroke();markDrawn();},{passive:false});
+  canvas.addEventListener('touchend',()=>sigDrawing=false);
 }
+function markDrawn(){if(!sigHasDrawn){sigHasDrawn=true;document.getElementById('sig-accept').disabled=false;}}
+function clearSig(){const c=document.getElementById('sig-canvas');sigCtx.clearRect(0,0,c.width,c.height);sigHasDrawn=false;document.getElementById('sig-accept').disabled=true;}
+function acceptSig(){sessionSig=document.getElementById('sig-canvas').toDataURL('image/jpeg',0.6);document.getElementById('sig-overlay').style.display='none';document.getElementById('main-app').style.display='block';render();}
 
-function markDrawn() {
-  if (!sigHasDrawn) {
-    sigHasDrawn = true;
-    document.getElementById('sig-accept').disabled = false;
-  }
-}
-
-function clearSig() {
-  const canvas = document.getElementById('sig-canvas');
-  sigCtx.clearRect(0, 0, canvas.width, canvas.height);
-  sigHasDrawn = false;
-  document.getElementById('sig-accept').disabled = true;
-}
-
-function acceptSig() {
-  const canvas = document.getElementById('sig-canvas');
-  sessionSig = canvas.toDataURL('image/jpeg', 0.6);
-  document.getElementById('sig-overlay').style.display = 'none';
-  document.getElementById('main-app').style.display = 'block';
-  render();
-}
-
-/* ─── PASS / FLAG ACTIONS ─── */
+/* ── PASS / FLAG ── */
 function passItem(bi, itemIdx) {
   const it = B[bi].items[itemIdx];
-  if (it.na) return;
+  if(it.na || it.proceed) return;
   const k = key(bi, itemIdx);
   const existing = state.items[k];
-  // If already passed, toggle off. If flagged, do nothing.
-  if (existing && existing.type === 'pass') {
-    delete state.items[k];
-  } else if (!existing) {
-    const d = today();
-    state.sigs[d] = sessionSig;
-    state.items[k] = { type: 'pass', date: d };
-  }
+  if(existing && existing.type==='pass'){delete state.items[k];}
+  else if(!existing){const d=today();state.sigs[d]=sessionSig;state.items[k]={type:'pass',date:d};}
   save(); render();
 }
-
 function openFlagPanel(bi, itemIdx, event) {
   event.stopPropagation();
-  const k = key(bi, itemIdx);
-  if (state.items[k] && state.items[k].type === 'flag') return; // already flagged, no edit
-  pendingFlag = { bi, itemIdx };
-  document.getElementById('flag-note').value = '';
+  const k=key(bi,itemIdx);
+  if(state.items[k]&&state.items[k].type==='flag') return;
+  pendingFlag={bi,itemIdx};
+  document.getElementById('flag-note').value='';
   document.getElementById('flag-panel').classList.add('open');
   document.getElementById('flag-backdrop').classList.add('open');
-  setTimeout(() => document.getElementById('flag-note').focus(), 100);
+  setTimeout(()=>document.getElementById('flag-note').focus(),100);
+}
+function closeFlagPanel(){pendingFlag=null;document.getElementById('flag-panel').classList.remove('open');document.getElementById('flag-backdrop').classList.remove('open');}
+function confirmFlag(){
+  if(!pendingFlag)return;
+  const note=document.getElementById('flag-note').value.trim();
+  if(!note){document.getElementById('flag-note').focus();return;}
+  const{bi,itemIdx}=pendingFlag;
+  const d=today();state.sigs[d]=sessionSig;state.items[key(bi,itemIdx)]={type:'flag',date:d,note};
+  save();closeFlagPanel();render();
 }
 
-function closeFlagPanel() {
-  pendingFlag = null;
-  document.getElementById('flag-panel').classList.remove('open');
-  document.getElementById('flag-backdrop').classList.remove('open');
-}
-
-function confirmFlag() {
-  if (!pendingFlag) return;
-  const note = document.getElementById('flag-note').value.trim();
-  if (!note) { document.getElementById('flag-note').focus(); return; }
-  const { bi, itemIdx } = pendingFlag;
-  const d = today();
-  state.sigs[d] = sessionSig;
-  state.items[key(bi, itemIdx)] = { type: 'flag', date: d, note };
-  save();
-  closeFlagPanel();
-  render();
-}
-
-/* ─── RENDER ─── */
-function stats(bi) {
-  let insp = 0, passed = 0, flagged = 0, tot = B[bi].items.length;
-  B[bi].items.forEach((it, i) => {
-    if (it.na) return;
+/* ── STATS ── */
+function stats(bi){
+  let insp=0,passed=0,flagged=0,tot=0;
+  B[bi].items.forEach((it,i)=>{
+    if(it.proceed)return;
+    tot++;
+    if(it.na)return;
     insp++;
-    const r = state.items[key(bi, i)];
-    if (r && r.type === 'pass') passed++;
-    if (r && r.type === 'flag') flagged++;
+    const r=state.items[key(bi,i)];
+    if(r&&r.type==='pass')passed++;
+    if(r&&r.type==='flag')flagged++;
   });
-  return { tot, insp, passed, flagged, done: passed + flagged };
+  return{tot,insp,passed,flagged,done:passed+flagged};
 }
 
-function renderGS() {
-  let ti = 0, tdone = 0, tpass = 0, tflag = 0, tt = 0;
-  B.forEach((_, bi) => { const s = stats(bi); ti += s.insp; tdone += s.done; tpass += s.passed; tflag += s.flagged; tt += s.tot; });
-  const p = ti ? Math.round(tdone / ti * 100) : 0;
-  document.getElementById('gsumm').innerHTML =
-    `<div class="stat"><div class="stat-n" style="color:#1D9E75">${tpass}</div><div class="stat-l">Passed</div></div>` +
-    `<div class="stat"><div class="stat-n" style="color:#d4a800">${tflag}</div><div class="stat-l">Flagged</div></div>` +
-    `<div class="stat"><div class="stat-n">${ti - tdone}</div><div class="stat-l">Remaining</div></div>` +
+/* ── RENDER ── */
+function renderGS(){
+  let ti=0,tpass=0,tflag=0,tt=0;
+  B.forEach((_,bi)=>{const s=stats(bi);ti+=s.insp;tpass+=s.passed;tflag+=s.flagged;tt+=s.tot;});
+  const p=ti?Math.round((tpass+tflag)/ti*100):0;
+  document.getElementById('gsumm').innerHTML=
+    `<div class="stat"><div class="stat-n" style="color:#1D9E75">${tpass}</div><div class="stat-l">Passed</div></div>`+
+    `<div class="stat"><div class="stat-n" style="color:#d4a800">${tflag}</div><div class="stat-l">Flagged</div></div>`+
+    `<div class="stat"><div class="stat-n">${ti-(tpass+tflag)}</div><div class="stat-l">Remaining</div></div>`+
     `<div class="stat"><div class="stat-n">${p}%</div><div class="stat-l">Complete</div></div>`;
 }
-
-function renderTabs() {
-  document.getElementById('btabs').innerHTML = B.map((b, i) => {
-    const s = stats(i);
-    const allDone = s.done === s.insp && s.insp > 0;
-    return `<button class="tab${i === cur ? ' active' : ''}${allDone ? ' all-done' : ''}" onclick="switchB(${i})">${b.name}<span class="badge">${s.done}/${s.insp}</span></button>`;
+function renderTabs(){
+  document.getElementById('btabs').innerHTML=B.map((b,i)=>{
+    const s=stats(i);const allDone=s.done===s.insp&&s.insp>0;
+    return`<button class="tab${i===cur?' active':''}${allDone?' all-done':''}" onclick="switchB(${i})">${b.name}<span class="badge">${s.done}/${s.insp}</span></button>`;
   }).join('');
 }
+function renderProg(){const s=stats(cur);document.getElementById('bprog').style.width=(s.insp?Math.round(s.done/s.insp*100):0)+'%';}
 
-function renderProg() {
-  const s = stats(cur);
-  document.getElementById('bprog').style.width = (s.insp ? Math.round(s.done / s.insp * 100) : 0) + '%';
-}
+const CAM_ICON=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`;
+const FLAG_ICON=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>`;
+const CHECK_ICON=`<svg class="ck" width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.2 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
-const CAM_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`;
-const FLAG_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>`;
-const CHECK_ICON = `<svg class="ck" width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.2 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+function renderCL(){
+  const branch=B[cur];
+  let html='';
+  let photoIdx=0; // counts all items including na for photo numbering
 
-function renderCL() {
-  const items = B[cur].items;
-  const cats = { 'Exit Signs & Emergency Lights': [], 'Fire Extinguishers': [], 'AEDs': [], 'Sprinkler Valves': [] };
+  branch.items.forEach((it,i)=>{
+    // Proceed divider
+    if(it.proceed){
+      // Only show proceed notes when filter is 'all'
+      if(filt==='all'){
+        html+=`<div class="proceed"><span class="proceed-arrow">&#8594;</span>${it.proceed}</div>`;
+      }
+      return;
+    }
 
-  items.forEach((it, i) => {
-    const k = key(cur, i);
-    const rec = state.items[k];
-    const isPassed = rec && rec.type === 'pass';
-    const isFlagged = rec && rec.type === 'flag';
-    const isDone = isPassed || isFlagged;
+    photoIdx++; // real item, increment photo number
+    const num=String(photoIdx).padStart(3,'0');
 
-    if (filt === 'pending' && (isDone || it.na)) return;
-    if (filt === 'passed' && !isPassed) return;
-    if (filt === 'flagged' && !isFlagged) return;
+    const k=key(cur,i);
+    const rec=state.items[k];
+    const isPassed=rec&&rec.type==='pass';
+    const isFlagged=rec&&rec.type==='flag';
+    const isDone=isPassed||isFlagged;
 
-    const cat = it.t.includes('Fire') ? 'Fire Extinguishers' : it.t.includes('AED') ? 'AEDs' : it.t.includes('Sprinkler') ? 'Sprinkler Valves' : 'Exit Signs & Emergency Lights';
-    cats[cat].push({ it, i, rec, isPassed, isFlagged });
+    if(filt==='pending'&&(isDone||it.na))return;
+    if(filt==='passed'&&!isPassed)return;
+    if(filt==='flagged'&&!isFlagged)return;
+
+    const cls=isPassed?' passed':isFlagged?' flagged':'';
+    const naCls=it.na?' na-item':'';
+
+    const sigHtml=rec&&state.sigs[rec.date]?`<img class="sig-thumb" src="${state.sigs[rec.date]}" alt="sig">`:'';
+    const noteHtml=isFlagged?`<div class="iflag-note">&#9888; ${rec.note}</div>`:'';
+    const flagCls=isFlagged?' flag-set':'';
+    const flagClick=isFlagged?'':'onclick="openFlagPanel('+cur+','+i+',event)"';
+    const flagTitle=isFlagged?'Issue flagged':'Flag an issue';
+
+    html+=`<div class="item${cls}${naCls}">
+      <div class="circle" onclick="passItem(${cur},${i})">${CHECK_ICON}</div>
+      <div class="iinfo" onclick="passItem(${cur},${i})">
+        <div class="itype">${it.t}</div>
+        <div class="iloc">${it.l}</div>
+        ${noteHtml}
+      </div>
+      <div class="item-right">
+        ${it.na
+          ?`<span class="na-pill">Sign physical tag</span>`
+          :rec?`<div class="imeta">${rec.date}${sigHtml}</div>`:''
+        }
+        ${it.na?'':
+          `<button class="icon-btn${flagCls}" title="${flagTitle}" ${flagClick}>${FLAG_ICON}</button>`
+        }
+        <button class="icon-btn" title="View photo" onclick="openPhoto(${cur},${num},event,'${it.t}','${it.l.replace(/'/g,"\\'")}','${branch.folder}')">${CAM_ICON}</button>
+      </div>
+    </div>`;
   });
 
-  let html = '';
-  ['Exit Signs & Emergency Lights', 'Fire Extinguishers', 'AEDs', 'Sprinkler Valves'].forEach(cat => {
-    const arr = cats[cat]; if (!arr || !arr.length) return;
-    html += `<div class="sec-lbl">${cat}</div>`;
-    arr.forEach(({ it, i, rec, isPassed, isFlagged }) => {
-      const cls = isPassed ? ' passed' : isFlagged ? ' flagged' : '';
-      const naCls = it.na ? ' na-item' : '';
-
-      // Signature thumbnail
-      let sigHtml = '';
-      if (rec && state.sigs[rec.date]) {
-        sigHtml = `<img class="sig-thumb" src="${state.sigs[rec.date]}" alt="signature">`;
-      }
-
-      // Meta column
-      let meta = '';
-      if (it.na) {
-        meta = `<span class="na-pill">Sign physical tag</span>`;
-      } else if (rec) {
-        meta = `<div class="imeta">${rec.date}${sigHtml}</div>`;
-      }
-
-      // Flag button — filled if already flagged
-      const flagCls = isFlagged ? ' flag-set' : '';
-      const flagClick = isFlagged ? '' : `onclick="openFlagPanel(${cur},${i},event)"`;
-      const flagTitle = isFlagged ? 'Issue flagged' : 'Flag an issue';
-      const flagBtn = `<button class="icon-btn${flagCls}" title="${flagTitle}" ${flagClick}>${FLAG_ICON}</button>`;
-
-      // Camera button
-      const camBtn = `<button class="icon-btn" title="View photo" onclick="openPhoto(${cur},${i},event)">${CAM_ICON}</button>`;
-
-      // Flag note display
-      const noteHtml = isFlagged ? `<div class="iflag-note">&#9888; ${rec.note}</div>` : '';
-
-      html += `<div class="item${cls}${naCls}">
-        <div class="circle" onclick="passItem(${cur},${i})">${CHECK_ICON}</div>
-        <div class="iinfo" onclick="passItem(${cur},${i})">
-          <div class="itype">${it.t}</div>
-          <div class="iloc">${it.l}</div>
-          ${noteHtml}
-        </div>
-        <div class="item-right">
-          ${it.na ? `<span class="na-pill">Sign physical tag</span>` : rec ? `<div class="imeta">${rec.date}${sigHtml}</div>` : ''}
-          ${it.na ? '' : flagBtn}
-          ${camBtn}
-        </div>
-      </div>`;
-    });
-  });
-  document.getElementById('cl').innerHTML = html || '<div class="empty">No items to show.</div>';
+  document.getElementById('cl').innerHTML=html||'<div class="empty">No items to show.</div>';
 }
 
-function render() { renderGS(); renderTabs(); renderProg(); renderCL(); }
-function switchB(i) { cur = i; render(); }
-function setF(f, el) { filt = f; document.querySelectorAll('.fbtn').forEach(x => x.classList.remove('active')); el.classList.add('active'); renderCL(); }
-function showToast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 2200); }
+function render(){renderGS();renderTabs();renderProg();renderCL();}
+function switchB(i){cur=i;render();}
+function setF(f,el){filt=f;document.querySelectorAll('.fbtn').forEach(x=>x.classList.remove('active'));el.classList.add('active');renderCL();}
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2200);}
 
-/* ─── PHOTO LIGHTBOX ─── */
-function openPhoto(bi, itemIdx, event) {
+/* ── PHOTO LIGHTBOX ── */
+function openPhoto(bi, num, event, type, loc, folder){
   event.stopPropagation();
-  const branch = B[bi], it = branch.items[itemIdx];
-  const num = String(itemIdx + 1).padStart(3, '0');
-  document.getElementById('lb-title').textContent = it.t + ' — ' + it.l;
-  document.getElementById('lb-sub').textContent = branch.name + ' Branch  •  Photo #' + num;
-  const wrap = document.getElementById('lb-img-wrap');
-  wrap.innerHTML = '<div style="color:#aaa;font-size:13px">Loading…</div>';
-  const tryLoad = (src, fallback) => {
-    const img = new Image();
-    img.style.cssText = 'max-width:100%;max-height:70vh;border-radius:8px;object-fit:contain';
-    img.onload = () => { wrap.innerHTML = ''; wrap.appendChild(img); };
-    img.onerror = fallback;
-    img.src = src;
+  const numStr=String(num).padStart(3,'0');
+  document.getElementById('lb-title').textContent=type+' — '+loc;
+  document.getElementById('lb-sub').textContent=B[bi].name+' Branch  •  Photo #'+numStr;
+  const wrap=document.getElementById('lb-img-wrap');
+  wrap.innerHTML='<div style="color:#aaa;font-size:13px">Loading…</div>';
+  const tryLoad=(src,fallback)=>{
+    const img=new Image();
+    img.style.cssText='max-width:100%;max-height:70vh;border-radius:8px;object-fit:contain';
+    img.onload=()=>{wrap.innerHTML='';wrap.appendChild(img);};
+    img.onerror=fallback;
+    img.src=src;
   };
-  tryLoad(`photos/${branch.folder}/${num}.jpg`,
-    () => tryLoad(`photos/${branch.folder}/${num}.JPG`,
-      () => { wrap.innerHTML = `<div class="lb-no-photo">No photo on file yet.<br><span style="font-size:11px;opacity:.6">Add photos/${branch.folder}/${num}.jpg to the repository.</span></div>`; }
+  tryLoad(`photos/${folder}/${numStr}.jpg`,
+    ()=>tryLoad(`photos/${folder}/${numStr}.JPG`,
+      ()=>{wrap.innerHTML=`<div class="lb-no-photo">No photo on file yet.<br><span style="font-size:11px;opacity:.6">Add photos/${folder}/${numStr}.jpg to the repository.</span></div>`;}
     )
   );
   document.getElementById('lb').classList.add('open');
 }
-function closeLB(event) {
-  if (!event || event.target === document.getElementById('lb') || event.target.classList.contains('lb-close')) {
-    document.getElementById('lb').classList.remove('open');
-  }
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { document.getElementById('lb').classList.remove('open'); closeFlagPanel(); } });
+function closeLB(event){if(!event||event.target===document.getElementById('lb')||event.target.classList.contains('lb-close')){document.getElementById('lb').classList.remove('open');}}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('lb').classList.remove('open');closeFlagPanel();}});
 
-/* ─── PDF EXPORT ─── */
-function doExport() {
-  const d = today();
-
-  // Collect all flagged items across all branches
-  const flagged = [];
-  B.forEach((branch, bi) => {
-    branch.items.forEach((it, i) => {
-      const rec = state.items[key(bi, i)];
-      if (rec && rec.type === 'flag') flagged.push({ branch: branch.name, it, rec });
+/* ── PDF EXPORT ── */
+function doExport(){
+  const d=today();
+  const flagged=[];
+  B.forEach((branch,bi)=>{
+    branch.items.forEach((it,i)=>{
+      if(it.proceed)return;
+      const rec=state.items[key(bi,i)];
+      if(rec&&rec.type==='flag')flagged.push({branch:branch.name,it,rec});
     });
   });
 
-  // Build branch tables
-  const branchHTML = B.map((branch, bi) => {
-    const s = stats(bi);
-    const rows = branch.items.map((it, i) => {
-      const rec = state.items[key(bi, i)];
-      const sig = rec && state.sigs[rec.date] ? `<img src="${state.sigs[rec.date]}" style="height:18px;max-width:60px;vertical-align:middle;opacity:.9">` : '';
-      let statusCell, rowStyle = '';
-      if (it.na) {
-        statusCell = `<td class="status"><span class="tag-pill">Sign physical tag</span></td><td></td><td></td>`;
-      } else if (!rec) {
-        statusCell = `<td class="status pending">Pending</td><td></td><td></td>`;
-      } else if (rec.type === 'pass') {
-        statusCell = `<td class="status pass">Pass</td><td class="date-cell">${rec.date}</td><td class="sig-cell">${sig}</td>`;
-      } else {
-        rowStyle = ' class="flag-row"';
-        statusCell = `<td class="status flag">&#9888; Flagged</td><td class="date-cell">${rec.date}</td><td class="sig-cell">${sig}</td>`;
+  const branchHTML=B.map((branch,bi)=>{
+    const s=stats(bi);
+    let photoCount=0;
+    const rows=branch.items.map((it,i)=>{
+      if(it.proceed)return''; // skip proceed notes in PDF
+      photoCount++;
+      const rec=state.items[key(bi,i)];
+      const sig=rec&&state.sigs[rec.date]?`<img src="${state.sigs[rec.date]}" style="height:18px;max-width:60px;vertical-align:middle;opacity:.9">`:'';
+      let statusCell,rowStyle='';
+      if(it.na){
+        statusCell=`<td class="status"><span class="tag-pill">Sign physical tag</span></td><td></td><td></td>`;
+      }else if(!rec){
+        statusCell=`<td class="status pending">Pending</td><td></td><td></td>`;
+      }else if(rec.type==='pass'){
+        statusCell=`<td class="status pass">Pass</td><td class="date-cell">${rec.date}</td><td class="sig-cell">${sig}</td>`;
+      }else{
+        rowStyle=' class="flag-row"';
+        statusCell=`<td class="status flag">&#9888; Flagged</td><td class="date-cell">${rec.date}</td><td class="sig-cell">${sig}</td>`;
       }
-      const noteCell = (rec && rec.type === 'flag') ? `<tr${rowStyle}><td colspan="2" style="padding:0 8px 6px 28px;font-size:10pt;color:#856404;font-style:italic">Note: ${rec.note}</td><td colspan="2"></td></tr>` : '';
-      return `<tr${rowStyle}><td class="type-cell">${it.t}</td><td class="loc-cell">${it.l}</td>${statusCell}</tr>${noteCell}`;
+      const noteRow=(rec&&rec.type==='flag')?`<tr${rowStyle}><td colspan="2" style="padding:0 8px 6px 28px;font-size:10pt;color:#856404;font-style:italic">Note: ${rec.note}</td><td colspan="2"></td></tr>`:'';
+      return`<tr${rowStyle}><td class="type-cell">${it.t}</td><td class="loc-cell">${it.l}</td>${statusCell}</tr>${noteRow}`;
     }).join('');
 
-    return `<div class="branch-section">
-      <div class="branch-header">${branch.name} Branch <span class="branch-stat">${s.passed} passed &nbsp;|&nbsp; ${s.flagged} flagged &nbsp;|&nbsp; ${s.insp - s.done} pending</span></div>
-      <table>
-        <thead><tr><th style="width:22%">Type</th><th>Location</th><th style="width:10%">Status</th><th style="width:11%">Date</th><th style="width:9%">Signature</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>`;
+    return`<div class="branch-section">
+      <div class="branch-header">${branch.name} Branch <span class="branch-stat">${s.passed} passed &nbsp;|&nbsp; ${s.flagged} flagged &nbsp;|&nbsp; ${s.insp-s.done} pending</span></div>
+      <table><thead><tr><th style="width:22%">Type</th><th>Location</th><th style="width:10%">Status</th><th style="width:11%">Date</th><th style="width:9%">Signature</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>`;
   }).join('');
 
-  // Flagged summary
-  const flagSummary = flagged.length === 0
-    ? `<div class="no-flags">No issues flagged during this inspection.</div>`
-    : `<table class="flag-table">
-        <thead><tr><th>Branch</th><th>Type</th><th>Location</th><th>Issue</th><th>Date</th><th>Signature</th></tr></thead>
-        <tbody>${flagged.map(({ branch, it, rec }) => {
-          const sig = state.sigs[rec.date] ? `<img src="${state.sigs[rec.date]}" style="height:18px;max-width:60px;vertical-align:middle">` : '';
-          return `<tr><td>${branch}</td><td>${it.t}</td><td>${it.l}</td><td style="color:#856404;font-style:italic">${rec.note}</td><td>${rec.date}</td><td>${sig}</td></tr>`;
-        }).join('')}</tbody>
-      </table>`;
+  const flagSummary=flagged.length===0
+    ?`<div class="no-flags">No issues flagged during this inspection.</div>`
+    :`<table class="flag-table"><thead><tr><th>Branch</th><th>Type</th><th>Location</th><th>Issue</th><th>Date</th><th>Signature</th></tr></thead>
+      <tbody>${flagged.map(({branch,it,rec})=>{
+        const sig=state.sigs[rec.date]?`<img src="${state.sigs[rec.date]}" style="height:18px;max-width:60px;vertical-align:middle">`:'';
+        return`<tr><td>${branch}</td><td>${it.t}</td><td>${it.l}</td><td style="color:#856404;font-style:italic">${rec.note}</td><td>${rec.date}</td><td>${sig}</td></tr>`;
+      }).join('')}</tbody></table>`;
 
-  const win = window.open('', '_blank');
+  const win=window.open('','_blank');
   win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>WPL Inspection Report — ${d}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:10pt;color:#1a1a18;padding:0;background:#fff}
-.page{max-width:900px;margin:0 auto;padding:.5in .5in .5in}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:10pt;color:#1a1a18;background:#fff}
+.page{max-width:900px;margin:0 auto;padding:.5in}
 .report-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:2px solid #1a1a18}
 .report-title{font-size:16pt;font-weight:700}
 .report-sub{font-size:10pt;color:#666;margin-top:3px}
@@ -636,9 +572,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-siz
 table{width:100%;border-collapse:collapse;font-size:9.5pt}
 th{background:#333;color:#fff;padding:4px 8px;text-align:left;font-size:9pt;font-weight:600}
 td{padding:4px 8px;border-bottom:1px solid #e8e8e8;vertical-align:middle}
-.type-cell{font-weight:600;color:#1a1a18}
+.type-cell{font-weight:600}
 .loc-cell{color:#444}
-.date-cell{color:#444;white-space:nowrap}
+.date-cell{white-space:nowrap}
 .sig-cell{text-align:center}
 .status{font-weight:600;white-space:nowrap}
 .status.pass{color:#0F6E56}
@@ -648,8 +584,7 @@ td{padding:4px 8px;border-bottom:1px solid #e8e8e8;vertical-align:middle}
 .tag-pill{font-size:8.5pt;padding:1px 6px;border-radius:10px;background:#fff3cd;color:#856404;border:1px solid #ffe083;font-weight:400}
 .print-btn{display:block;margin:0 auto 1rem;padding:8px 24px;font-size:13px;font-weight:600;background:#1a1a18;color:#fff;border:none;border-radius:6px;cursor:pointer}
 @media print{.print-btn{display:none}@page{size:letter portrait;margin:.5in}}
-</style></head><body>
-<div class="page">
+</style></head><body><div class="page">
 <button class="print-btn" onclick="window.print()">Save as PDF / Print</button>
 <div class="report-header">
   <div><div class="report-title">Safety Inspection Report</div><div class="report-sub">Wicomico Public Library</div></div>
@@ -662,18 +597,17 @@ ${branchHTML}
   win.document.close();
 }
 
-/* ─── RESET ─── */
-function doReset() {
-  if (!confirm(`Reset all inspections for ${B[cur].name} branch?`)) return;
-  B[cur].items.forEach((_, i) => delete state.items[key(cur, i)]);
-  save(); render(); showToast(`${B[cur].name} reset.`);
+/* ── RESET ── */
+function doReset(){
+  if(!confirm(`Reset all inspections for ${B[cur].name} branch?`))return;
+  B[cur].items.forEach((_,i)=>delete state.items[key(cur,i)]);
+  save();render();showToast(`${B[cur].name} reset.`);
 }
-function doResetAll() {
-  if (!confirm('Reset ALL branches? This cannot be undone.')) return;
-  state = { items: {}, sigs: {} }; save(); render(); showToast('All branches reset.');
+function doResetAll(){
+  if(!confirm('Reset ALL branches? This cannot be undone.'))return;
+  state={items:{},sigs:{}};save();render();showToast('All branches reset.');
 }
 
-/* ─── INIT ─── */
 load();
 initSigPad();
 </script>
