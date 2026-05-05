@@ -414,7 +414,6 @@ const CHECK_ICON=`<svg class="ck" width="12" height="10" viewBox="0 0 12 10" fil
 function renderCL(){
   const branch=B[cur];
   let html='';
-  let photoIdx=0; // counts all items including na for photo numbering
 
   branch.items.forEach((it,i)=>{
     // Proceed divider
@@ -426,8 +425,7 @@ function renderCL(){
       return;
     }
 
-    photoIdx++; // real item, increment photo number
-    const num=String(photoIdx).padStart(3,'0');
+    const num=String(it.photoNum).padStart(3,'0');
 
     const k=key(cur,i);
     const rec=state.items[k];
@@ -607,6 +605,16 @@ function doResetAll(){
   if(!confirm('Reset ALL branches? This cannot be undone.'))return;
   state={items:{},sigs:{}};save();render();showToast('All branches reset.');
 }
+
+// Pre-compute a stable photo number for every real item in every branch
+// This runs once at startup and matches exactly how reference.html is numbered
+B.forEach(branch => {
+  let photoNum = 0;
+  branch.items.forEach(it => {
+    if (it.proceed) return; // dividers don't get a number
+    it.photoNum = ++photoNum;
+  });
+});
 
 load();
 initSigPad();
