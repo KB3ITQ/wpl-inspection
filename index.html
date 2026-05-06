@@ -121,7 +121,11 @@ button.btn.danger{color:#c0392b;border-color:#e0b0b0}
 .lb-close:hover{background:rgba(255,255,255,.1)}
 
 /* ── PRINT / RESPONSIVE ── */
-@media print{.actions,.frow,.tabs,.toast,#lb,#flag-panel,#flag-backdrop,#sig-overlay{display:none!important}.pbar{display:none}}
+@media print{
+  .actions,.frow,.tabs,.toast,#lb,#flag-panel,#flag-backdrop,#sig-overlay,.container{display:none!important}
+  #report-overlay{position:static!important;padding:0!important}
+  #report-overlay .btn{display:none!important}
+}
 @media(max-width:520px){.summary{flex-wrap:wrap}.stat{min-width:calc(50% - 4px)}}
 </style>
 </head>
@@ -155,6 +159,7 @@ button.btn.danger{color:#c0392b;border-color:#e0b0b0}
       <h1>Safety Inspection Checklist</h1>
       <div class="subtitle">Wicomico Public Library</div>
     </div>
+    <div id="last-saved" style="font-size:11px;color:#aaa;text-align:right;line-height:1.4"></div>
   </div>
   <div class="summary" id="gsumm"></div>
   <div class="tabs" id="btabs"></div>
@@ -174,7 +179,16 @@ button.btn.danger{color:#c0392b;border-color:#e0b0b0}
   </div>
 </div>
 
-<!-- PHOTO LIGHTBOX -->
+<!-- REPORT OVERLAY (mobile-friendly PDF export) -->
+<div id="report-overlay" style="display:none;position:fixed;inset:0;background:#fff;z-index:400;overflow-y:auto;padding:1rem">
+  <div style="max-width:780px;margin:0 auto">
+    <div style="display:flex;gap:8px;margin-bottom:1rem;position:sticky;top:0;background:#fff;padding:.5rem 0;border-bottom:1px solid #eee;z-index:1">
+      <button class="btn ok" onclick="window.print()" style="flex:1">Save as PDF / Print</button>
+      <button class="btn" onclick="closeReport()" style="flex:1">← Back to Inspection</button>
+    </div>
+    <div id="report-content"></div>
+  </div>
+</div>
 <div id="lb" onclick="closeLB(event)">
   <div class="lb-inner">
     <div class="lb-title" id="lb-title"></div>
@@ -337,11 +351,38 @@ function loadState() {
     if (raw) state = JSON.parse(raw);
     if (!state.items) state.items = {};
     if (!state.sigs)  state.sigs  = {};
-  } catch(e) {}
+  } catch(e) {
+    showStorageWarning();
+  }
 }
 
 function saveState() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    // Update last-saved indicator
+    const el = document.getElementById('last-saved');
+    if (el) el.textContent = 'Saved ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+  } catch(e) {
+    showStorageWarning();
+  }
+}
+
+function showStorageWarning() {
+  const el = document.getElementById('last-saved');
+  if (el) {
+    el.textContent = '⚠️ Progress may not be saving — avoid Private/Incognito mode';
+    el.style.color = '#c0392b';
+  }
+}
+
+// Check on startup whether localStorage is actually working
+function checkStorage() {
+  try {
+    localStorage.setItem('_wpl_test', '1');
+    localStorage.removeItem('_wpl_test');
+  } catch(e) {
+    showStorageWarning();
+  }
 }
 
 function today() {
@@ -426,7 +467,16 @@ function clearSig() {
 }
 
 function acceptSig() {
-  sessionSig = document.getElementById('sig-canvas').toDataURL('image/jpeg', 0.6);
+  // Composite onto a white background before capturing so black ink is always visible
+  const canvas  = document.getElementById('sig-canvas');
+  const tmp     = document.createElement('canvas');
+  tmp.width     = canvas.width;
+  tmp.height    = canvas.height;
+  const tmpCtx  = tmp.getContext('2d');
+  tmpCtx.fillStyle = '#ffffff';
+  tmpCtx.fillRect(0, 0, tmp.width, tmp.height);
+  tmpCtx.drawImage(canvas, 0, 0);
+  sessionSig = tmp.toDataURL('image/jpeg', 0.8);
   document.getElementById('sig-overlay').style.display = 'none';
   document.getElementById('main-app').style.display    = 'block';
   render();
@@ -670,6 +720,10 @@ document.addEventListener('keydown', e => {
 /* ────────────────────────────────────────────
    PDF EXPORT
 ──────────────────────────────────────────── */
+function closeReport() {
+  document.getElementById('report-overlay').style.display = 'none';
+}
+
 function doExport() {
   const d = today();
 
@@ -687,10 +741,10 @@ function doExport() {
   const branchHTML = BRANCHES.map((branch, bi) => {
     const s = branchStats(bi);
     const rows = branch.items.map((it, i) => {
-      if (it.proceed) return ''; // proceed notes omitted from PDF
+      if (it.proceed) return ''; // proceed notes omitted from report
       const rec = state.items[itemKey(bi, i)];
       const sig = rec && state.sigs[rec.date]
-        ? `<img src="${state.sigs[rec.date]}" style="height:18px;max-width:60px;vertical-align:middle;opacity:.9">`
+        ? `<img src="${state.sigs[rec.date]}" style="height:18px;max-width:60px;vertical-align:middle;opacity:.9;border:1px solid #eee;border-radius:3px;background:#fff">`
         : '';
       let statusCell, rowClass = '';
       if (it.na) {
@@ -704,18 +758,18 @@ function doExport() {
         statusCell = `<td class="status flag">&#9888; Flagged</td><td class="date-cell">${rec.date}</td><td class="sig-cell">${sig}</td>`;
       }
       const noteRow = (rec && rec.type === 'flag')
-        ? `<tr${rowClass}><td colspan="2" style="padding:0 8px 6px 28px;font-size:10pt;color:#856404;font-style:italic">Note: ${rec.note}</td><td colspan="2"></td></tr>`
+        ? `<tr${rowClass}><td colspan="2" style="padding:0 8px 6px 28px;font-size:9pt;color:#856404;font-style:italic">Note: ${rec.note}</td><td colspan="2"></td></tr>`
         : '';
-      return `<tr${rowClass}><td class="type-cell">${it.t}</td><td class="loc-cell">${it.l}</td>${statusCell}</tr>${noteRow}`;
+      return `<tr${rowClass}><td class="rc-type">${it.t}</td><td class="rc-loc">${it.l}</td>${statusCell}</tr>${noteRow}`;
     }).join('');
 
     return `
-      <div class="branch-section">
-        <div class="branch-header">
+      <div class="rc-branch">
+        <div class="rc-branch-hdr">
           ${branch.name} Branch
-          <span class="branch-stat">${s.passed} passed &nbsp;|&nbsp; ${s.flagged} flagged &nbsp;|&nbsp; ${s.inspectable - s.done} pending</span>
+          <span class="rc-branch-stat">${s.passed} passed &nbsp;|&nbsp; ${s.flagged} flagged &nbsp;|&nbsp; ${s.inspectable - s.done} pending</span>
         </div>
-        <table>
+        <table class="rc-table">
           <thead><tr>
             <th style="width:22%">Type</th>
             <th>Location</th>
@@ -730,78 +784,67 @@ function doExport() {
 
   // Issues summary
   const flagSummary = allFlagged.length === 0
-    ? `<div class="no-flags">No issues flagged during this inspection.</div>`
-    : `<table class="flag-table">
-        <thead><tr><th>Branch</th><th>Type</th><th>Location</th><th>Issue</th><th>Date</th><th>Signature</th></tr></thead>
+    ? `<div class="rc-no-flags">No issues flagged during this inspection.</div>`
+    : `<table class="rc-flag-table">
+        <thead><tr><th>Branch</th><th>Type</th><th>Location</th><th>Issue</th><th>Date</th><th>Sig</th></tr></thead>
         <tbody>
           ${allFlagged.map(({branchName, it, rec}) => {
             const sig = state.sigs[rec.date]
-              ? `<img src="${state.sigs[rec.date]}" style="height:18px;max-width:60px;vertical-align:middle">`
+              ? `<img src="${state.sigs[rec.date]}" style="height:18px;max-width:60px;vertical-align:middle;border:1px solid #eee;border-radius:3px;background:#fff">`
               : '';
             return `<tr>
-              <td>${branchName}</td>
-              <td>${it.t}</td>
-              <td>${it.l}</td>
+              <td>${branchName}</td><td>${it.t}</td><td>${it.l}</td>
               <td style="color:#856404;font-style:italic">${rec.note}</td>
-              <td>${rec.date}</td>
-              <td>${sig}</td>
+              <td>${rec.date}</td><td>${sig}</td>
             </tr>`;
           }).join('')}
         </tbody>
       </table>`;
 
-  const win = window.open('', '_blank');
-  win.document.write(`<!DOCTYPE html>
-<html><head><meta charset="UTF-8">
-<title>WPL Inspection Report — ${d}</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:10pt;color:#1a1a18;background:#fff}
-.page{max-width:900px;margin:0 auto;padding:.5in}
-.report-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:2px solid #1a1a18}
-.report-title{font-size:16pt;font-weight:700}
-.report-sub{font-size:10pt;color:#666;margin-top:3px}
-.report-meta{font-size:10pt;color:#444;text-align:right;line-height:1.7}
-.section-heading{font-size:12pt;font-weight:700;margin:1.2rem 0 .4rem;padding:.3rem .5rem;background:#1a1a18;color:#fff;border-radius:3px}
-.flag-table{width:100%;border-collapse:collapse;margin-bottom:.5rem;font-size:9.5pt}
-.flag-table th{background:#d4a800;color:#fff;padding:4px 8px;text-align:left;font-size:9pt}
-.flag-table td{padding:4px 8px;border-bottom:1px solid #f0e0a0;vertical-align:middle}
-.flag-table tr:nth-child(even) td{background:#fffbee}
-.no-flags{padding:.5rem;font-size:10pt;color:#888;font-style:italic}
-.branch-section{margin-bottom:1.2rem;page-break-inside:avoid}
-.branch-header{font-size:11pt;font-weight:700;padding:.3rem .5rem;background:#f0f0f0;border-left:4px solid #1a1a18;margin-bottom:.3rem;display:flex;justify-content:space-between;align-items:center}
-.branch-stat{font-size:9pt;font-weight:400;color:#666}
-table{width:100%;border-collapse:collapse;font-size:9.5pt}
-th{background:#333;color:#fff;padding:4px 8px;text-align:left;font-size:9pt;font-weight:600}
-td{padding:4px 8px;border-bottom:1px solid #e8e8e8;vertical-align:middle}
-.type-cell{font-weight:600}
-.loc-cell{color:#444}
-.date-cell{white-space:nowrap}
-.sig-cell{text-align:center}
-.status{font-weight:600;white-space:nowrap}
-.status.pass{color:#0F6E56}
-.status.flag{color:#856404}
-.status.pending{color:#aaa;font-weight:400}
-.flag-row td{background:#fffbee}
-.tag-pill{font-size:8.5pt;padding:1px 6px;border-radius:10px;background:#fff3cd;color:#856404;border:1px solid #ffe083;font-weight:400}
-.print-btn{display:block;margin:0 auto 1rem;padding:8px 24px;font-size:13px;font-weight:600;background:#1a1a18;color:#fff;border:none;border-radius:6px;cursor:pointer}
-@media print{.print-btn{display:none}@page{size:letter portrait;margin:.5in}}
-</style>
-</head>
-<body><div class="page">
-  <button class="print-btn" onclick="window.print()">Save as PDF / Print</button>
-  <div class="report-header">
-    <div>
-      <div class="report-title">Safety Inspection Report</div>
-      <div class="report-sub">Wicomico Public Library</div>
+  // Inject into the overlay
+  document.getElementById('report-content').innerHTML = `
+    <style>
+      .rc-report-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:2px solid #1a1a18;flex-wrap:wrap;gap:8px}
+      .rc-report-title{font-size:16pt;font-weight:700}
+      .rc-report-sub{font-size:10pt;color:#666;margin-top:3px}
+      .rc-report-meta{font-size:10pt;color:#444;text-align:right;line-height:1.7}
+      .rc-section-hdr{font-size:12pt;font-weight:700;margin:1.2rem 0 .4rem;padding:.3rem .5rem;background:#1a1a18;color:#fff;border-radius:3px}
+      .rc-flag-table{width:100%;border-collapse:collapse;margin-bottom:.5rem;font-size:9pt}
+      .rc-flag-table th{background:#d4a800;color:#fff;padding:4px 8px;text-align:left}
+      .rc-flag-table td{padding:4px 8px;border-bottom:1px solid #f0e0a0;vertical-align:middle}
+      .rc-flag-table tr:nth-child(even) td{background:#fffbee}
+      .rc-no-flags{padding:.5rem;font-size:10pt;color:#888;font-style:italic}
+      .rc-branch{margin-bottom:1.2rem;page-break-inside:avoid}
+      .rc-branch-hdr{font-size:11pt;font-weight:700;padding:.3rem .5rem;background:#f0f0f0;border-left:4px solid #1a1a18;margin-bottom:.3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px}
+      .rc-branch-stat{font-size:9pt;font-weight:400;color:#666}
+      .rc-table{width:100%;border-collapse:collapse;font-size:9pt}
+      .rc-table th{background:#333;color:#fff;padding:4px 8px;text-align:left;font-weight:600}
+      .rc-table td{padding:4px 8px;border-bottom:1px solid #e8e8e8;vertical-align:middle}
+      .rc-type{font-weight:600}
+      .rc-loc{color:#444}
+      .date-cell{white-space:nowrap}
+      .sig-cell{text-align:center}
+      .status{font-weight:600;white-space:nowrap}
+      .status.pass{color:#0F6E56}
+      .status.flag{color:#856404}
+      .status.pending{color:#aaa;font-weight:400}
+      .flag-row td{background:#fffbee}
+      .tag-pill{font-size:8pt;padding:1px 6px;border-radius:10px;background:#fff3cd;color:#856404;border:1px solid #ffe083;font-weight:400}
+    </style>
+    <div class="rc-report-hdr">
+      <div>
+        <div class="rc-report-title">Safety Inspection Report</div>
+        <div class="rc-report-sub">Wicomico Public Library</div>
+      </div>
+      <div class="rc-report-meta">Generated: ${new Date().toLocaleString()}</div>
     </div>
-    <div class="report-meta">Generated: ${new Date().toLocaleString()}</div>
-  </div>
-  <div class="section-heading">&#9888; Issues Requiring Attention</div>
-  ${flagSummary}
-  ${branchHTML}
-</div></body></html>`);
-  win.document.close();
+    <div class="rc-section-hdr">&#9888; Issues Requiring Attention</div>
+    ${flagSummary}
+    ${branchHTML}
+  `;
+
+  document.getElementById('report-overlay').style.display = 'block';
+  window.scrollTo(0, 0);
 }
 
 /* ────────────────────────────────────────────
@@ -827,6 +870,7 @@ function doResetAll() {
    INIT
 ──────────────────────────────────────────── */
 loadState();
+checkStorage();
 initSigPad();
 </script>
 </body>
