@@ -697,7 +697,13 @@ function openPhoto(bi, numStr, event, type, loc, folder) {
     `photos/${folder}/${numStr}.jpg`,
     () => tryLoad(
       `photos/${folder}/${numStr}.JPG`,
-      () => { wrap.innerHTML = `<div class="lb-no-photo">No photo on file yet.<br><span style="font-size:11px;opacity:.6">Add photos/${folder}/${numStr}.jpg to the repository.</span></div>`; }
+      () => tryLoad(
+        `photos/${folder}/${numStr}.JPEG`,
+        () => tryLoad(
+          `photos/${folder}/${numStr}.jpeg`,
+          () => { wrap.innerHTML = `<div class="lb-no-photo">No photo on file yet.<br><span style="font-size:11px;opacity:.6">Add photos/${folder}/${numStr}.jpg to the repository.</span></div>`; }
+        )
+      )
     )
   );
 
