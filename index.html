@@ -284,7 +284,8 @@ const BRANCHES = [
   {proceed:"Proceed towards children's program room"},
   {t:"Fire Extinguisher",          l:"Children's program room",                                       na:1},
   {proceed:"Proceed towards children's play area"},
-  {t:"Exit Sign",                  l:"Circle Ave. exit (children's area)"},
+  {t:"Exit Sign",                  l:"Circle Ave. exit (children's area)",                            photo:'058'},
+  {t:"Fire Extinguisher",          l:"Circle Ave. exit (children's area)",                            na:1, photo:'0581'},
   {t:"Fire Extinguisher",          l:"IT office",                                                     na:1},
   {t:"Emergency Light",            l:"IT office"},
   {proceed:"Proceed towards circulation desk"},
@@ -402,7 +403,25 @@ BRANCHES.forEach(branch => {
   let n = 0;
   branch.items.forEach(it => {
     if (it.proceed) return;
-    it.photoNum = String(++n).padStart(3, '0');
+    if (it.photo) {
+      // Hard-coded photo number — use as-is, don't touch the counter
+      it.photoNum = it.photo;
+    } else {
+      it.photoNum = String(++n).padStart(3, '0');
+    }
+  });
+  // Second pass: sync counter after any hard-coded items so subsequent
+  // sequential items don't collide. We re-run and track the last numeric value.
+  n = 0;
+  branch.items.forEach(it => {
+    if (it.proceed) return;
+    if (it.photo) {
+      // If the hard-coded number is purely numeric, sync the counter to it
+      const parsed = parseInt(it.photo, 10);
+      if (!isNaN(parsed) && parsed > n) n = parsed;
+    } else {
+      it.photoNum = String(++n).padStart(3, '0');
+    }
   });
 });
 
